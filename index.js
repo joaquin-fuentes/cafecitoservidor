@@ -3,6 +3,9 @@ import cors from "cors"
 import morgan from "morgan"
 import * as dotenv from "dotenv"
 import "./src/database/dbConnection"
+import productosRouter from "./src/routes/productos.routes"
+import usuariosRouter from "./src/routes/usuarios.routes"
+
 
 
 //crear una instancia de express
@@ -26,8 +29,7 @@ app.use(express.urlencoded({extended:true}))  //permite recibir en el objeto req
 app.use(morgan("dev")) //nos da informacion extra en la terminal
 
 //rutas(siempre van al final)
-// http://localhost:3004/productos
+// http://localhost:4000/apicafe/productos
 
-app.get("/prueba", (req, res)=>{
-    res.send("esto es una prueba de la peticion GET a mi backend")
-})
+app.use("/apicafe", productosRouter)
+app.use("/apicafe", usuariosRouter)
