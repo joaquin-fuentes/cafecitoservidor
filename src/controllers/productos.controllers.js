@@ -49,3 +49,22 @@ export const borrarProducto = async (req, res)=>{
         })
     }
 }
+
+// controlador para editar un producto
+
+export const editarProducto = async (req, res)=>{
+    try {
+        //obtener el id y luego solicitar a moongoose el editar   
+        const {id} = req.params   
+        await Producto.findByIdAndUpdate(id, req.body)
+        res.status(200).json({
+            mensaje: "El producto fue actualizado correctamente"
+        })
+    } 
+    catch (error) {
+        console.log(error)
+        res.status(404).json({
+            mensaje: "Error al editar el producto"
+        })
+    }
+}
