@@ -13,7 +13,8 @@ const router = Router()
 
 router.route("/productos")
     .get(obtenerProductos)
-    .post([check("nombreProducto")
+    .post([
+    check("nombreProducto")
         .notEmpty()
         .withMessage("El nombre del producto es un dato obligatorio")
         .isLength({ min: 2, max: 100 })
@@ -29,7 +30,19 @@ router.route("/productos")
             } else {
                 throw new Error("El precio debe estar entre 1 y 10000")
             }
-        })
+        }),
+    check("imagen")
+        .notEmpty()
+        .withMessage("La imagen es un dato obligatorio")
+        .matches(/^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png|svg)$/)
+        .withMessage("La imagen debe ser de formato jpg, png o svg"),
+    check("categoria")
+        .notEmpty()
+        .withMessage("La categoria es un dato obligatorio")
+        .isIn(["Bebidas calientes", "Bebidas frias", "Resposteria", "Sandwiches y bocadillos", "Desayunos", "Complementos y snacks" ])
+        .withMessage("Debe seleccionar una categoria valida")
+
+
 
     ], crearProducto)
 router.route("/productos/:id")
