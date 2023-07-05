@@ -4,7 +4,7 @@ const productoSchema = new Schema({
     nombreProducto: {
         type: String,
         minLength: 2,
-        maxLength: 50,
+        maxLength: 100,
         unique: true,
         required: true
     },
