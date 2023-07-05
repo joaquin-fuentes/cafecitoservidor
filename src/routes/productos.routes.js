@@ -6,20 +6,17 @@ import {
     obtenerProducto,
     obtenerProductos
 } from "../controllers/productos.controllers";
-import {check} from "express-validator"
+import validarProducto from "../helpers/validarProducto";
 
 const router = Router()
 
 
 router.route("/productos")
     .get(obtenerProductos)
-    .post([check("nombreProducto")
-           .notEmpty()
-           .withMessage("El nombre del producto es un dato obligatorio")]
-                ,crearProducto)
+    .post(validarProducto , crearProducto)
 router.route("/productos/:id")
     .get(obtenerProducto)
     .delete(borrarProducto)
-    .put(editarProducto)
+    .put(validarProducto, editarProducto)
 
 export default router
