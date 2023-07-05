@@ -33,12 +33,6 @@ export const obtenerProducto = async (req, res)=>{
 
 export const crearProducto = async (req, res)=>{
     try {
-         //trabajar con el resultado de la validacion de express-validator
-         const errors = validationResult(req)
-         // errors.isEmpty() // true: esta vacio, false: hay error
-         if(!errors.isEmpty()){
-             return res.status(400).json({errores: errors.array()})
-         }
         const productoNuevo = new Producto(req.body)
         await productoNuevo.save()
         res.status(201).json({
