@@ -23,6 +23,10 @@ const productoSchema = new Schema({
         type: String,
         required:true
     },
+    descripcion:{
+        type: String,
+        required: true
+    }
 })
 
 const Producto = model("producto", productoSchema)
