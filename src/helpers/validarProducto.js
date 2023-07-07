@@ -23,7 +23,7 @@ const validarProducto = [
     check("imagen")
         .notEmpty()
         .withMessage("La imagen es un dato obligatorio")
-        .matches(/^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png|svg)$/)
+        .matches(/.*\.(jpg|png|jpeg)$/)
         .withMessage("La imagen debe ser de formato jpg, png o svg"),
     check("categoria")
         .notEmpty()
