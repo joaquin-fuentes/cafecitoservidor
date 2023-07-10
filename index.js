@@ -32,4 +32,4 @@ app.use(morgan("dev")) //nos da informacion extra en la terminal
 // http://localhost:4000/apicafe/productos
 
 app.use("/apicafe", productosRouter)
-app.use("/apicafe", usuariosRouter)
+app.use("/apicafe/auth", usuariosRouter)
