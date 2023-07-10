@@ -15,7 +15,8 @@ export const login = async (req, res) => {
         });
       }
       // si no es valido el password
-      if (password !== usuario.password) {
+      const passwordValido = bcrypt.compareSync(password, usuario.password) //devuelve un valor booleano
+      if (!passwordValido) {
         return res.status(400).json({
           mensaje: "Correo o password invalido - password",
         });
